@@ -1,0 +1,24 @@
+.widget-mendixmarkdown-clickable {
+    cursor: pointer;
+}
+
+.widget-mendixmarkdown {
+    display: inline-block;
+}
+
+.widget-mendixmarkdown.badge:empty {
+    display: initial;
+    /* Fix padding to stay round */
+    padding: 3px 10px;
+}
+
+.widget-mendixmarkdown.label:empty {
+    display: initial;
+    /* Fix padding to stay square */
+    padding: .2em .8em .3em;
+}
+
+.widget-mendixmarkdown.badge {
+    min-width: 18px;
+    min-height: 18px;
+}
