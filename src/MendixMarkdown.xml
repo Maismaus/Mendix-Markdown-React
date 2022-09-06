@@ -11,6 +11,7 @@
 
     <properties>
         <propertyGroup caption="Data source">
+            <systemProperty key="Label" />
             <property key="textAttribute" type="attribute">
                 <caption>Attribute (path)</caption>
                 <description />
@@ -22,11 +23,10 @@
         <propertyGroup caption="Toolbar">
             <property key="mdeToolbar" type="object" isList="true" required="false">
                     <caption>Toolbar customization</caption>
-                    <description>Refer to the EasyMDE GitHub page for possible options:
-                        https://github.com/Ionaru/easy-markdown-editor
+                    <description>Refer to the EasyMDE GitHub page for possible options: https://github.com/Ionaru/easy-markdown-editor
                     </description>
                     <properties>
-                        <propertyGroup caption="Toolbar buttons">
+                        <propertyGroup caption="Button configuration">
                             <property key="mdeToolbarButtonName" type="string" required="true">
                                 <caption>Button name</caption>
                                 <description></description>
@@ -39,11 +39,25 @@
                                 <caption>Button class</caption>
                                 <description></description>
                             </property>
-                            <property key="mdeToolbarOptionLeftReplace" type="string" required="true">
+                        </propertyGroup>
+                        <propertyGroup caption="Action">
+                        	<property key="mdeToolbarButtonActionType" type="enumeration" defaultValue="replace">
+                                <caption>Button action</caption>
+                                <description>Type of action the button should perform</description>
+                                <enumerationValues>
+                                    <enumerationValue key="replace">Replace</enumerationValue>
+                                    <enumerationValue key="action">Action</enumerationValue>
+                                </enumerationValues>
+                            </property>
+                            <property key="mdeToolbarButtonAction" type="action">
+                                <caption>Action</caption>
+                                <description>Action to be performed when button is clicked</description>
+                            </property>
+                            <property key="mdeToolbarButtonLeftReplace" type="string" required="false">
                                 <caption>Left hand side replace</caption>
                                 <description></description>
                             </property>
-                            <property key="mdeToolbarOptionRightReplace" type="string" required="true">
+                            <property key="mdeToolbarButtonRightReplace" type="string" required="false">
                                 <caption>Right hand side replace</caption>
                                 <description></description>
                             </property>
@@ -52,8 +66,7 @@
                 </property>
             <property key="mdeHideIcons" type="string" required="false">
                 <caption>Buttons to hide</caption>
-                <description>Defines which buttons to hide on the toolbar, separated by spaces only. Refer to the
-                    EasyMDE documentation to see what options there are.</description>
+                <description>Defines which buttons to hide on the toolbar, separated by spaces only. Refer to the EasyMDE documentation to see what options there are.</description>
             </property>
         </propertyGroup>
         <propertyGroup caption="Options">
@@ -66,8 +79,7 @@
             <propertyGroup caption="Advanced">
                 <property key="mdeOptions" type="object" isList="true" required="false">
                     <caption>Editor options</caption>
-                    <description>Refer to the EasyMDE GitHub page for possible options:
-                        https://github.com/Ionaru/easy-markdown-editor
+                    <description>Refer to the EasyMDE GitHub page for possible options: https://github.com/Ionaru/easy-markdown-editor
                     </description>
                     <properties>
                         <propertyGroup caption="Options">

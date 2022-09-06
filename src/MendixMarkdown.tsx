@@ -7,15 +7,18 @@ import { MendixMarkdownContainerProps } from "../typings/MendixMarkdownProps";
 import "./ui/MendixMarkdown.scss";
 
 export function MendixMarkdown(props: MendixMarkdownContainerProps): ReactElement {
-    const { textAttribute, mdeOptions, mdeSpellChecker, mdeHideIcons } = props;
+    const { textAttribute, mdeOptions, mdeSpellChecker, mdeHideIcons, mdeToolbar } = props;
+
+    const toolbarButtons = Toolbar(mdeToolbar);
 
     const markdownOptions = useMemo(() => {
         return {
             spellChecker: mdeSpellChecker,
             hideIcons: mdeHideIcons.split(" "),
-            toolbar: Toolbar
+            toolbar: toolbarButtons
         } as SimpleMDE.Options;
     }, []);
+    //Todo for loop
     // @ts-ignore key is not used
     Object.entries(mdeOptions).map(([key, value]) => {
         (markdownOptions as any)[value.key] = value.value;

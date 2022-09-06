@@ -3,15 +3,18 @@
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
-import { CSSProperties } from "react";
-import { EditableValue } from "mendix";
+import { ActionValue, EditableValue } from "mendix";
+
+export type MdeToolbarButtonActionTypeEnum = "replace" | "action";
 
 export interface MdeToolbarType {
     mdeToolbarButtonName: string;
     mdeToolbarOptionCaption: string;
     mdeToolbarOptionClassName: string;
-    mdeToolbarOptionLeftReplace: string;
-    mdeToolbarOptionRightReplace: string;
+    mdeToolbarButtonActionType: MdeToolbarButtonActionTypeEnum;
+    mdeToolbarButtonAction?: ActionValue;
+    mdeToolbarButtonLeftReplace: string;
+    mdeToolbarButtonRightReplace: string;
 }
 
 export interface MdeOptionsType {
@@ -23,8 +26,10 @@ export interface MdeToolbarPreviewType {
     mdeToolbarButtonName: string;
     mdeToolbarOptionCaption: string;
     mdeToolbarOptionClassName: string;
-    mdeToolbarOptionLeftReplace: string;
-    mdeToolbarOptionRightReplace: string;
+    mdeToolbarButtonActionType: MdeToolbarButtonActionTypeEnum;
+    mdeToolbarButtonAction: {} | null;
+    mdeToolbarButtonLeftReplace: string;
+    mdeToolbarButtonRightReplace: string;
 }
 
 export interface MdeOptionsPreviewType {
@@ -34,9 +39,8 @@ export interface MdeOptionsPreviewType {
 
 export interface MendixMarkdownContainerProps {
     name: string;
-    class: string;
-    style?: CSSProperties;
     tabIndex?: number;
+    id: string;
     textAttribute: EditableValue<string>;
     mdeToolbar: MdeToolbarType[];
     mdeHideIcons: string;
@@ -45,9 +49,6 @@ export interface MendixMarkdownContainerProps {
 }
 
 export interface MendixMarkdownPreviewProps {
-    className: string;
-    style: string;
-    styleObject?: CSSProperties;
     readOnly: boolean;
     textAttribute: string;
     mdeToolbar: MdeToolbarPreviewType[];
