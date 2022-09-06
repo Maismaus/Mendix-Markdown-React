@@ -3,9 +3,10 @@
     <clientModule name="MendixMarkdown" version="1.0.0" xmlns="http://www.mendix.com/clientModule/1.0/">
         <widgetFiles>
             <widgetFile path="MendixMarkdown.xml"/>
+            <!-- <widgetFile path="MarkdownViewer.xml"/> -->
         </widgetFiles>
         <files>
-            <file path="mendix/mendixmarkdown"/>
+            <file path="Markdown/mendixmarkdown"/>
         </files>
     </clientModule>
 </package>

@@ -14,7 +14,7 @@
     "mendixHost": "http://localhost:8080",
     "developmentPort": 3000
   },
-  "packagePath": "mendix",
+  "packagePath": "Markdown",
   "scripts": {
     "start": "pluggable-widgets-tools start:server",
     "dev": "pluggable-widgets-tools start:web",
@@ -40,6 +40,8 @@
     "@types/react-test-renderer": "~17.0.1"
   },
   "dependencies": {
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "easymde": "^2.17.0",
+    "react-simplemde-editor": "^5.0.2"
   }
 }
