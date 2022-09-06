@@ -4,23 +4,44 @@
  * @author Mendix UI Content Team
  */
 import { CSSProperties } from "react";
-import { ActionValue, EditableValue } from "mendix";
-import { Big } from "big.js";
+import { EditableValue } from "mendix";
 
-export type BootstrapStyleEnum = "default" | "primary" | "success" | "info" | "inverse" | "warning" | "danger";
+export interface MdeToolbarType {
+    mdeToolbarButtonName: string;
+    mdeToolbarOptionCaption: string;
+    mdeToolbarOptionClassName: string;
+    mdeToolbarOptionLeftReplace: string;
+    mdeToolbarOptionRightReplace: string;
+}
 
-export type MendixmarkdownTypeEnum = "badge" | "label";
+export interface MdeOptionsType {
+    key: string;
+    value: string;
+}
+
+export interface MdeToolbarPreviewType {
+    mdeToolbarButtonName: string;
+    mdeToolbarOptionCaption: string;
+    mdeToolbarOptionClassName: string;
+    mdeToolbarOptionLeftReplace: string;
+    mdeToolbarOptionRightReplace: string;
+}
+
+export interface MdeOptionsPreviewType {
+    key: string;
+    value: string;
+}
 
 export interface MendixMarkdownContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
-    valueAttribute?: EditableValue<string | Big>;
-    mendixmarkdownValue: string;
-    bootstrapStyle: BootstrapStyleEnum;
-    mendixmarkdownType: MendixmarkdownTypeEnum;
-    onClickAction?: ActionValue;
+    textAttribute: EditableValue<string>;
+    mdeToolbar: MdeToolbarType[];
+    mdeHideIcons: string;
+    mdeSpellChecker: boolean;
+    mdeOptions: MdeOptionsType[];
 }
 
 export interface MendixMarkdownPreviewProps {
@@ -28,9 +49,9 @@ export interface MendixMarkdownPreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
-    valueAttribute: string;
-    mendixmarkdownValue: string;
-    bootstrapStyle: BootstrapStyleEnum;
-    mendixmarkdownType: MendixmarkdownTypeEnum;
-    onClickAction: {} | null;
+    textAttribute: string;
+    mdeToolbar: MdeToolbarPreviewType[];
+    mdeHideIcons: string;
+    mdeSpellChecker: boolean;
+    mdeOptions: MdeOptionsPreviewType[];
 }

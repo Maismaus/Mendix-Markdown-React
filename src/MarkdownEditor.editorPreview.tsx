@@ -1,37 +1,37 @@
-import { ReactElement, createElement } from "react";
+// import { ReactElement, createElement } from "react";
 
-import { parseInlineStyle } from "@mendix/pluggable-widgets-tools";
+// import { parseInlineStyle } from "@mendix/pluggable-widgets-tools";
 
-import { BadgeSample, BadgeSampleProps } from "./components/BadgeSample";
-import { MendixMarkdownPreviewProps } from "../typings/MendixMarkdownProps";
+// import { BadgeSample, BadgeSampleProps } from "./components/BadgeSample";
+// import { MendixMarkdownPreviewProps } from "../typings/MendixMarkdownProps";
 
-function parentInline(node?: HTMLElement | null): void {
-    // Temporary fix, the web modeler add a containing div, to render inline we need to change it.
-    if (node && node.parentElement && node.parentElement.parentElement) {
-        node.parentElement.parentElement.style.display = "inline-block";
-    }
-}
+// function parentInline(node?: HTMLElement | null): void {
+//     // Temporary fix, the web modeler add a containing div, to render inline we need to change it.
+//     if (node && node.parentElement && node.parentElement.parentElement) {
+//         node.parentElement.parentElement.style.display = "inline-block";
+//     }
+// }
 
-function transformProps(props: MendixMarkdownPreviewProps): BadgeSampleProps {
-    return {
-        type: props.mendixmarkdownType,
-        bootstrapStyle: props.bootstrapStyle,
-        className: props.className,
-        clickable: false,
-        style: parseInlineStyle(props.style),
-        defaultValue: props.mendixmarkdownValue ? props.mendixmarkdownValue : "",
-        value: props.valueAttribute
-    };
-}
+// function transformProps(props: MendixMarkdownPreviewProps): BadgeSampleProps {
+//     return {
+//         type: props.mendixmarkdownType,
+//         bootstrapStyle: props.bootstrapStyle,
+//         className: props.className,
+//         clickable: false,
+//         style: parseInlineStyle(props.style),
+//         defaultValue: props.mendixmarkdownValue ? props.mendixmarkdownValue : "",
+//         value: props.valueAttribute
+//     };
+// }
 
-export function preview(props: MendixMarkdownPreviewProps): ReactElement {
-    return (
-        <div ref={parentInline}>
-            <BadgeSample {...transformProps(props)}></BadgeSample>
-        </div>
-    );
-}
+// export function preview(props: MendixMarkdownPreviewProps): ReactElement {
+//     return (
+//         <div ref={parentInline}>
+//             <BadgeSample {...transformProps(props)}></BadgeSample>
+//         </div>
+//     );
+// }
 
-export function getPreviewCss(): string {
-    return require("./ui/MendixMarkdown.css");
-}
+// export function getPreviewCss(): string {
+//     return require("./ui/MendixMarkdown.css");
+// }
