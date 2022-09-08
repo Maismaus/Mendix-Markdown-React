@@ -11,6 +11,7 @@ export interface MdeToolbarType {
     mdeToolbarButtonName: string;
     mdeToolbarOptionCaption: string;
     mdeToolbarOptionClassName: string;
+    mdeToolbarButtonInsertPosition: number;
     mdeToolbarButtonActionType: MdeToolbarButtonActionTypeEnum;
     mdeToolbarButtonAction?: ActionValue;
     mdeToolbarButtonLeftReplace: string;
@@ -26,6 +27,7 @@ export interface MdeToolbarPreviewType {
     mdeToolbarButtonName: string;
     mdeToolbarOptionCaption: string;
     mdeToolbarOptionClassName: string;
+    mdeToolbarButtonInsertPosition: number | null;
     mdeToolbarButtonActionType: MdeToolbarButtonActionTypeEnum;
     mdeToolbarButtonAction: {} | null;
     mdeToolbarButtonLeftReplace: string;

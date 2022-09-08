@@ -25,23 +25,23 @@ export function Toolbar(mdeToolbar: MdeToolbarType[]): ReadonlyArray<"|" | Strin
         "guide",
         "|",
         "undo",
-        "redo"
+        "redo",
     ];
 
     for (let btn of mdeToolbar) {
         const newButton = {
             name: btn.mdeToolbarButtonName,
             action: (editor: EasyMDE) => {
-                editor.codemirror.replaceSelection(
-                    btn.mdeToolbarButtonLeftReplace +
-                        editor.codemirror.getSelection() +
-                        btn.mdeToolbarButtonRightReplace
-                );
+                editor.codemirror.replaceSelection(btn.mdeToolbarButtonLeftReplace + editor.codemirror.getSelection() + btn.mdeToolbarButtonRightReplace);
             },
             className: btn.mdeToolbarOptionClassName,
-            title: btn.mdeToolbarOptionCaption
+            title: btn.mdeToolbarOptionCaption,
         };
-        toolbarButtons.push(newButton);
+        if (btn.mdeToolbarButtonInsertPosition == -1) {
+            toolbarButtons.push(newButton);
+        } else {
+            toolbarButtons.splice(btn.mdeToolbarButtonInsertPosition, 0, newButton);
+        }
     }
 
     return toolbarButtons;

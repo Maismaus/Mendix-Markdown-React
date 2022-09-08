@@ -39,6 +39,10 @@
                                 <caption>Button class</caption>
                                 <description></description>
                             </property>
+                            <property key="mdeToolbarButtonInsertPosition" type="integer" defaultValue="-1">
+                                <caption>Button position</caption>
+                                <description>Position in the toolbar to insert the button. -1 means insert at last position on the toolbar.</description>
+                            </property>
                         </propertyGroup>
                         <propertyGroup caption="Action">
                         	<property key="mdeToolbarButtonActionType" type="enumeration" defaultValue="replace">

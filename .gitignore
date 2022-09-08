@@ -1,3 +1,4 @@
+tests\testProject\deployment
 .DS_Store
 .idea
 .vscode
@@ -10,6 +11,7 @@ node_modules
 mxproject
 coverage
 
+**/tests/testProject/deployment
 **/results
 mendixProject
 **/e2e/diffs
