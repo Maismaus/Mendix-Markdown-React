@@ -83,7 +83,7 @@
             <propertyGroup caption="Advanced">
                 <property key="mdeOptions" type="object" isList="true" required="false">
                     <caption>Editor options</caption>
-                    <description>Refer to the EasyMDE GitHub page for possible options: https://github.com/Ionaru/easy-markdown-editor
+                    <description>Refer to the EasyMDE GitHub page for possible options: https://github.com/Ionaru/easy-markdown-editor. Nested options are not supported.
                     </description>
                     <properties>
                         <propertyGroup caption="Options">
