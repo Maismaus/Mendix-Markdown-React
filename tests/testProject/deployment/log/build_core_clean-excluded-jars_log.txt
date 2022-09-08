@@ -1,0 +1,8 @@
+Buildfile: C:\Users\Marius\Documents\GitHub\Mendix-Markdown-React\tests\testProject\deployment\build_core.xml
+
+clean-excluded-jars:
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+
