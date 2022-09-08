@@ -1,7 +1,6 @@
 import { MdeToolbarType } from "typings/MendixMarkdownProps";
 
 export function Toolbar(mdeToolbar: MdeToolbarType[]): ReadonlyArray<"|" | String | Object> {
-    console.log(mdeToolbar);
     let toolbarButtons: (string | object)[] = [
         "bold",
         "italic",
@@ -32,7 +31,12 @@ export function Toolbar(mdeToolbar: MdeToolbarType[]): ReadonlyArray<"|" | Strin
         const newButton = {
             name: btn.mdeToolbarButtonName,
             action: (editor: EasyMDE) => {
-                editor.codemirror.replaceSelection(btn.mdeToolbarButtonLeftReplace + editor.codemirror.getSelection() + btn.mdeToolbarButtonRightReplace);
+                if (btn.mdeToolbarButtonActionType == "replace") {
+                    editor.codemirror.replaceSelection(btn.mdeToolbarButtonLeftReplace + editor.codemirror.getSelection() + btn.mdeToolbarButtonRightReplace);
+                }
+                if (btn.mdeToolbarButtonActionType == "action") {
+                    btn.mdeToolbarButtonAction?.execute();
+                }
             },
             className: btn.mdeToolbarOptionClassName,
             title: btn.mdeToolbarOptionCaption,
@@ -46,13 +50,3 @@ export function Toolbar(mdeToolbar: MdeToolbarType[]): ReadonlyArray<"|" | Strin
 
     return toolbarButtons;
 }
-
-// const newButton = {
-//     name: "anchor",
-//     action: (editor: EasyMDE) => {
-//         editor.codemirror.replaceSelection("{{");
-//     },
-//     className: "fa fa-anchor",
-//     title: "Add anchor"
-// };
-// toolbarButtons.push(newButton);

@@ -15,19 +15,12 @@ export function MendixMarkdown(props: MendixMarkdownContainerProps): ReactElemen
         return {
             spellChecker: mdeSpellChecker,
             hideIcons: mdeHideIcons.split(" "),
-            toolbar: toolbarButtons
+            toolbar: toolbarButtons,
         } as SimpleMDE.Options;
     }, []);
-    //Todo for loop
-    // @ts-ignore key is not used
-    Object.entries(mdeOptions).map(([key, value]) => {
-        (markdownOptions as any)[value.key] = value.value;
+
+    mdeOptions.forEach((option) => {
+        (markdownOptions as any)[option.key] = option.value;
     });
-    return (
-        <SimpleMdeReact
-            options={markdownOptions}
-            value={textAttribute.value}
-            onChange={value => textAttribute.setValue(value)}
-        />
-    );
+    return <SimpleMdeReact options={markdownOptions} value={textAttribute.value} onChange={(value) => textAttribute.setValue(value)} />;
 }
