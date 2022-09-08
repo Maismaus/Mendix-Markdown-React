@@ -1,8 +1,0 @@
-Buildfile: C:\Users\Marius\Documents\GitHub\NewWidget\tests\testProject\deployment\build_core.xml
-
-clean:
-
-BUILD SUCCESSFUL
-Total time: 0 seconds
-
-
