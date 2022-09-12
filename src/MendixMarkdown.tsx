@@ -42,6 +42,9 @@ export function MendixMarkdown(props: MendixMarkdownContainerProps): ReactElemen
         document.body.addEventListener(eventListenerHook, changeMarkdown);
         return () => document.body.removeEventListener(eventListenerHook, changeMarkdown);
     });
+
+    //TODO include readonly mode
+    //TODO include custom markdown functions
     return (
         <SimpleMdeReact
             options={markdownOptions}

@@ -26,15 +26,11 @@
                 </description>
                 <properties>
                     <propertyGroup caption="Button configuration">
-                        <property key="mdeToolbarButtonName" type="string" required="true">
-                            <caption>Button name</caption>
-                            <description></description>
-                        </property>
-                        <property key="mdeToolbarOptionCaption" type="string" required="true">
+                        <property key="mdeToolbarOptionCaption" type="string" required="false">
                             <caption>Button caption</caption>
                             <description></description>
                         </property>
-                        <property key="mdeToolbarOptionClassName" type="string" required="true">
+                        <property key="mdeToolbarOptionClassName" type="string" required="false">
                             <caption>Button class</caption>
                             <description></description>
                         </property>
@@ -50,20 +46,21 @@
                             <enumerationValues>
                                 <enumerationValue key="replace">Replace</enumerationValue>
                                 <enumerationValue key="action">Action</enumerationValue>
+                                <enumerationValue key="divider">Divider</enumerationValue>
                             </enumerationValues>
                         </property>
-                        <property key="mdeToolbarButtonAction" type="action">
-                            <caption>Action</caption>
-                            <description>Action to be performed when button is clicked</description>
-                        </property>
-                        <property key="mdeToolbarButtonLeftReplace" type="string" required="false">
-                            <caption>Left hand side replace</caption>
-                            <description></description>
-                        </property>
-                        <property key="mdeToolbarButtonRightReplace" type="string" required="false">
-                            <caption>Right hand side replace</caption>
-                            <description></description>
-                        </property>
+                            <property key="mdeToolbarButtonAction" type="action">
+                                <caption>Action</caption>
+                                <description>Action to be performed when button is clicked</description>
+                            </property>
+                            <property key="mdeToolbarButtonLeftReplace" type="string" required="false">
+                                <caption>Left hand side replace</caption>
+                                <description></description>
+                            </property>
+                            <property key="mdeToolbarButtonRightReplace" type="string" required="false">
+                                <caption>Right hand side replace</caption>
+                                <description></description>
+                            </property>
                     </propertyGroup>
                 </properties>
             </property>
@@ -82,8 +79,7 @@
             <propertyGroup caption="Advanced">
                 <property key="mdeOptions" type="object" isList="true" required="false">
                     <caption>Editor options</caption>
-                    <description>Refer to the EasyMDE GitHub page for possible options:
-                        https://github.com/Ionaru/easy-markdown-editor. Nested options are not supported.
+                    <description>Refer to the EasyMDE GitHub page for possible options: https://github.com/Ionaru/easy-markdown-editor. Nested options are not supported.
                     </description>
                     <properties>
                         <propertyGroup caption="Options">

@@ -5,10 +5,9 @@
  */
 import { ActionValue, DynamicValue, EditableValue } from "mendix";
 
-export type MdeToolbarButtonActionTypeEnum = "replace" | "action";
+export type MdeToolbarButtonActionTypeEnum = "replace" | "action" | "divider";
 
 export interface MdeToolbarType {
-    mdeToolbarButtonName: string;
     mdeToolbarOptionCaption: string;
     mdeToolbarOptionClassName: string;
     mdeToolbarButtonInsertPosition: number;
@@ -24,7 +23,6 @@ export interface MdeOptionsType {
 }
 
 export interface MdeToolbarPreviewType {
-    mdeToolbarButtonName: string;
     mdeToolbarOptionCaption: string;
     mdeToolbarOptionClassName: string;
     mdeToolbarButtonInsertPosition: number | null;

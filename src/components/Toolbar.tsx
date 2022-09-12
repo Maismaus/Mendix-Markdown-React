@@ -28,23 +28,28 @@ export function Toolbar(mdeToolbar: MdeToolbarType[]): ReadonlyArray<"|" | Strin
     ];
 
     for (let btn of mdeToolbar) {
-        const newButton = {
-            name: btn.mdeToolbarButtonName,
-            action: (editor: EasyMDE) => {
-                if (btn.mdeToolbarButtonActionType == "replace") {
-                    editor.codemirror.replaceSelection(
-                        btn.mdeToolbarButtonLeftReplace +
-                            editor.codemirror.getSelection() +
-                            btn.mdeToolbarButtonRightReplace
-                    );
-                }
-                if (btn.mdeToolbarButtonActionType == "action") {
-                    btn.mdeToolbarButtonAction?.execute();
-                }
-            },
-            className: btn.mdeToolbarOptionClassName,
-            title: btn.mdeToolbarOptionCaption
-        };
+        let newButton = {};
+        if (btn.mdeToolbarButtonActionType == "divider") {
+            newButton = "|";
+        } else {
+            newButton = {
+                action: (editor: EasyMDE) => {
+                    if (btn.mdeToolbarButtonActionType == "replace") {
+                        editor.codemirror.replaceSelection(
+                            btn.mdeToolbarButtonLeftReplace +
+                                editor.codemirror.getSelection() +
+                                btn.mdeToolbarButtonRightReplace
+                        );
+                        editor.codemirror.focus();
+                    }
+                    if (btn.mdeToolbarButtonActionType == "action") {
+                        btn.mdeToolbarButtonAction?.execute();
+                    }
+                },
+                className: btn.mdeToolbarOptionClassName,
+                title: btn.mdeToolbarOptionCaption
+            };
+        }
         if (btn.mdeToolbarButtonInsertPosition == -1) {
             toolbarButtons.push(newButton);
         } else {

@@ -3,7 +3,7 @@
     "widgetName": "MendixMarkdown",
     "version": "1.0.0",
     "description": "Mendix Markdown viewer and editor",
-    "copyright": "© Mendix Technology BV 2022. All rights reserved.",
+    "copyright": "© Marius van der Knaap",
     "author": "Marius van der Knaap",
     "engines": {
         "node": ">=16"
