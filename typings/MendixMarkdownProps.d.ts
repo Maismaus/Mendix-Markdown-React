@@ -3,7 +3,7 @@
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
-import { ActionValue, EditableValue } from "mendix";
+import { ActionValue, DynamicValue, EditableValue } from "mendix";
 
 export type MdeToolbarButtonActionTypeEnum = "replace" | "action";
 
@@ -48,6 +48,7 @@ export interface MendixMarkdownContainerProps {
     mdeHideIcons: string;
     mdeSpellChecker: boolean;
     mdeOptions: MdeOptionsType[];
+    domRef?: DynamicValue<string>;
 }
 
 export interface MendixMarkdownPreviewProps {
@@ -57,4 +58,5 @@ export interface MendixMarkdownPreviewProps {
     mdeHideIcons: string;
     mdeSpellChecker: boolean;
     mdeOptions: MdeOptionsPreviewType[];
+    domRef: string;
 }

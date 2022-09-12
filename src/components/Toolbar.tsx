@@ -24,7 +24,7 @@ export function Toolbar(mdeToolbar: MdeToolbarType[]): ReadonlyArray<"|" | Strin
         "guide",
         "|",
         "undo",
-        "redo",
+        "redo"
     ];
 
     for (let btn of mdeToolbar) {
@@ -32,14 +32,18 @@ export function Toolbar(mdeToolbar: MdeToolbarType[]): ReadonlyArray<"|" | Strin
             name: btn.mdeToolbarButtonName,
             action: (editor: EasyMDE) => {
                 if (btn.mdeToolbarButtonActionType == "replace") {
-                    editor.codemirror.replaceSelection(btn.mdeToolbarButtonLeftReplace + editor.codemirror.getSelection() + btn.mdeToolbarButtonRightReplace);
+                    editor.codemirror.replaceSelection(
+                        btn.mdeToolbarButtonLeftReplace +
+                            editor.codemirror.getSelection() +
+                            btn.mdeToolbarButtonRightReplace
+                    );
                 }
                 if (btn.mdeToolbarButtonActionType == "action") {
                     btn.mdeToolbarButtonAction?.execute();
                 }
             },
             className: btn.mdeToolbarOptionClassName,
-            title: btn.mdeToolbarOptionCaption,
+            title: btn.mdeToolbarOptionCaption
         };
         if (btn.mdeToolbarButtonInsertPosition == -1) {
             toolbarButtons.push(newButton);

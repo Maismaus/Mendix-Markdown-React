@@ -11,7 +11,7 @@
     "license": "Apache-2.0",
     "config": {
         "projectPath": "./tests/testProject",
-        "mendixHost": "http://localhost:8080",
+        "mendixHost": "http://localhost:8079",
         "developmentPort": 3000
     },
     "packagePath": "Markdown",
@@ -31,6 +31,7 @@
     "devDependencies": {
         "@mendix/pluggable-widgets-tools": "^9.0.0",
         "@types/big.js": "^6.0.2",
+        "@types/codemirror": "0.0.109",
         "@types/enzyme": "^3.10.8",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jasmine": "^3.6.9",

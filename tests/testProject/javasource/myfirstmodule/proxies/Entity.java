@@ -20,7 +20,8 @@ public class Entity
 	 */
 	public enum MemberNames
 	{
-		Attr("Attr");
+		Attr("Attr"),
+		Number("Number");
 
 		private final java.lang.String metaName;
 
@@ -157,6 +158,42 @@ public class Entity
 	public final void setAttr(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String attr)
 	{
 		getMendixObject().setValue(context, MemberNames.Attr.toString(), attr);
+	}
+
+	/**
+	 * @return value of Number
+	 */
+	public final java.lang.Long getNumber()
+	{
+		return getNumber(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of Number
+	 */
+	public final java.lang.Long getNumber(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.Long) getMendixObject().getValue(context, MemberNames.Number.toString());
+	}
+
+	/**
+	 * Set value of Number
+	 * @param number
+	 */
+	public final void setNumber(java.lang.Long number)
+	{
+		setNumber(getContext(), number);
+	}
+
+	/**
+	 * Set value of Number
+	 * @param context
+	 * @param number
+	 */
+	public final void setNumber(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Long number)
+	{
+		getMendixObject().setValue(context, MemberNames.Number.toString(), number);
 	}
 
 	/**
