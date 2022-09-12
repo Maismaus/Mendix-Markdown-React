@@ -15,7 +15,6 @@ export function MendixMarkdown(props: MendixMarkdownContainerProps): ReactElemen
         return {
             spellChecker: mdeSpellChecker,
             hideIcons: mdeHideIcons.split(" "),
-            // previewRender: customPreviewRender,
             toolbar: Toolbar(mdeToolbar)
         } as SimpleMDE.Options;
     }, []);
@@ -25,22 +24,12 @@ export function MendixMarkdown(props: MendixMarkdownContainerProps): ReactElemen
         (markdownOptions as any)[option.key] = option.value;
     });
 
-    // line and cursor
-    // const [lineAndCursor, setLineAndCursor] = useState<Position | null>(null);
-    // const getLineAndCursorCallback = useCallback((position: Position) => {
-    //     setLineAndCursor(position);
-    // }, []);
-
     const [codemirrorInstance, setCodemirrorInstance] = useState<Editor | null>(null);
     const getCmInstanceCallback = useCallback((editor: Editor) => {
         setCodemirrorInstance(editor);
     }, []);
 
     function changeMarkdown(e: CustomEvent) {
-        // textAttribute.setValue(e.detail);
-        // console.log("changeMarkdown");
-        // console.log(lineAndCursor);
-        // console.log(codemirrorInstance);
         codemirrorInstance?.replaceSelection(e.detail);
     }
     useEffect(() => {
@@ -53,22 +42,6 @@ export function MendixMarkdown(props: MendixMarkdownContainerProps): ReactElemen
             value={textAttribute.value}
             onChange={value => textAttribute.setValue(value)}
             getCodemirrorInstance={getCmInstanceCallback}
-            // getLineAndCursor={getLineAndCursorCallback}
         />
     );
 }
-
-// const customPreviewRender = function (text: string) {
-//     console.log(text);
-//     // Override function
-//     const walkTokens = (token: marked.Token) => {
-//         if (token.type === "heading") {
-//             token.depth += 1;
-//         }
-//     };
-//     return marked(text, {
-//         // renderer: renderer,
-//         // tokenizer: tokenizer,
-//         walkTokens: walkTokens,
-//     });
-// };
