@@ -5,7 +5,7 @@
             <widgetFile path="MendixMarkdown.xml"/>
         </widgetFiles>
         <files>
-            <file path="mendixmarkdown"/>
+            <file path="markdown/mendixmarkdown"/>
         </files>
     </clientModule>
 </package>

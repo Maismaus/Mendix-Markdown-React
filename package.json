@@ -1,5 +1,5 @@
 {
-    "name": "mendixmarkdown",
+    "name": "markdown",
     "widgetName": "MendixMarkdown",
     "version": "1.0.0",
     "description": "Mendix Markdown viewer and editor",
@@ -14,7 +14,7 @@
         "mendixHost": "http://localhost:8079",
         "developmentPort": 3000
     },
-    "packagePath": "Markdown",
+    "packagePath": "mvdk",
     "scripts": {
         "start": "pluggable-widgets-tools start:server",
         "dev": "pluggable-widgets-tools start:web",

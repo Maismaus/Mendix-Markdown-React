@@ -22,6 +22,18 @@ export interface MdeOptionsType {
     value: string;
 }
 
+export type MdeRenderOptionTypeEnum = "block" | "inline";
+
+export interface MdeRenderOptionsType {
+    mdeRenderOptionName: string;
+    mdeRenderOptionType: MdeRenderOptionTypeEnum;
+    mdeRenderOptionStart: string;
+    mdeRenderOptionEnd: string;
+    mdeRenderPreviewTag: string;
+    mdeRenderOptionHtmlStart: string;
+    mdeRenderOptionHtmlEnd: string;
+}
+
 export interface MdeToolbarPreviewType {
     mdeToolbarOptionCaption: string;
     mdeToolbarOptionClassName: string;
@@ -37,24 +49,38 @@ export interface MdeOptionsPreviewType {
     value: string;
 }
 
+export interface MdeRenderOptionsPreviewType {
+    mdeRenderOptionName: string;
+    mdeRenderOptionType: MdeRenderOptionTypeEnum;
+    mdeRenderOptionStart: string;
+    mdeRenderOptionEnd: string;
+    mdeRenderPreviewTag: string;
+    mdeRenderOptionHtmlStart: string;
+    mdeRenderOptionHtmlEnd: string;
+}
+
 export interface MendixMarkdownContainerProps {
     name: string;
     tabIndex?: number;
     id: string;
     textAttribute: EditableValue<string>;
+    readOnly: DynamicValue<boolean>;
     mdeToolbar: MdeToolbarType[];
     mdeHideIcons: string;
     mdeSpellChecker: boolean;
     mdeOptions: MdeOptionsType[];
+    mdeRenderOptions: MdeRenderOptionsType[];
     domRef?: DynamicValue<string>;
 }
 
 export interface MendixMarkdownPreviewProps {
     readOnly: boolean;
     textAttribute: string;
+    readOnly: string;
     mdeToolbar: MdeToolbarPreviewType[];
     mdeHideIcons: string;
     mdeSpellChecker: boolean;
     mdeOptions: MdeOptionsPreviewType[];
+    mdeRenderOptions: MdeRenderOptionsPreviewType[];
     domRef: string;
 }
