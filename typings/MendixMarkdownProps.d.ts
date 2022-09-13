@@ -70,7 +70,7 @@ export interface MendixMarkdownContainerProps {
     mdeSpellChecker: boolean;
     mdeOptions: MdeOptionsType[];
     mdeRenderOptions: MdeRenderOptionsType[];
-    domRef?: DynamicValue<string>;
+    domEventListener?: DynamicValue<string>;
 }
 
 export interface MendixMarkdownPreviewProps {
@@ -82,5 +82,5 @@ export interface MendixMarkdownPreviewProps {
     mdeSpellChecker: boolean;
     mdeOptions: MdeOptionsPreviewType[];
     mdeRenderOptions: MdeRenderOptionsPreviewType[];
-    domRef: string;
+    domEventListener: string;
 }

@@ -143,9 +143,9 @@
                 </property>
             </propertyGroup>
         <propertyGroup caption="Advanced">
-            <property key="domRef" type="textTemplate" required="false">
-                <caption>Ref</caption>
-                <description>Adds a ref to the DOM element, allowing you to manipulate the value from outside the widget.</description>
+            <property key="domEventListener" type="textTemplate" required="false">
+                <caption>DOM event listener</caption>
+                <description>Adds a listener to the body element, allowing you to manipulate the value from outside the widget.</description>
             </property>
         </propertyGroup>
     </properties>

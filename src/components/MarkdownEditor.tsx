@@ -6,10 +6,9 @@ import { MarkdownRenderer } from "./MarkdownRenderer";
 import SimpleMDE from "easymde";
 import "easymde/dist/easymde.min.css";
 import { MendixMarkdownContainerProps } from "../../typings/MendixMarkdownProps";
-// import "./ui/MarkdownEditor.scss";
 
 export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElement {
-    const { textAttribute, mdeOptions, mdeRenderOptions, mdeSpellChecker, mdeHideIcons, mdeToolbar, domRef } = props;
+    const { textAttribute, mdeOptions, mdeRenderOptions, mdeSpellChecker, mdeHideIcons, mdeToolbar, domEventListener } = props;
 
     const markdownOptions = useMemo(() => {
         return {
@@ -38,23 +37,14 @@ export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElemen
      * This will create a custom event triggering a change in the Markdown editor.
      * Use mdref if you have multiple Markdown editors on the page
      */
-    function changeMarkdown(e: CustomEvent) {
+    function changeMarkdown(e: CustomEvent): void {
         codemirrorInstance?.replaceSelection(e.detail);
     }
-    const eventListenerHook = "changeMarkdown" + domRef?.value;
+    const eventListenerHook = "changeMarkdown" + domEventListener?.value;
     useEffect(() => {
         document.body.addEventListener(eventListenerHook, changeMarkdown);
         return () => document.body.removeEventListener(eventListenerHook, changeMarkdown);
     });
 
-    //TODO include readonly mode
-    //TODO include custom markdown functions
-    return (
-        <SimpleMdeReact
-            options={markdownOptions}
-            value={textAttribute.value}
-            onChange={value => textAttribute.setValue(value)}
-            getCodemirrorInstance={getCmInstanceCallback}
-        />
-    );
+    return <SimpleMdeReact options={markdownOptions} value={textAttribute.value} onChange={value => textAttribute.setValue(value)} getCodemirrorInstance={getCmInstanceCallback} />;
 }
