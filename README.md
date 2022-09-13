@@ -1,6 +1,6 @@
 ## MendixMarkdown
 
-Mendix Markdown viewer and editor to use as a custom widget within Mendix projects. This is a continuation of the now deprecated [Mendix Markdown viewer](https://github.com/mendixlabs/mendix-markdown-viewer) by @JelteMX. Uses EasyMDE with the simplemde-react wrapper.
+Mendix Markdown viewer and editor to use as a custom widget within Mendix projects. This is a continuation of the now deprecated [Mendix Markdown viewer](https://github.com/mendixlabs/mendix-markdown-viewer). Uses EasyMDE with the simplemde-react wrapper.
 
 ## Features
 
