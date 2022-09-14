@@ -7,7 +7,7 @@ Mendix Markdown viewer and editor to use as a custom widget within Mendix projec
 -   Markdown viewer and editor combined.
 -   Set read only mode through an expression where you can use dataview objects.
 -   Fully customizable toolbar where icons can be added or default icons can be hidden.
--   Allows you to set a domRef allowing you to manipulate the field from outside the widget.
+-   Allows you to set a domEventListener allowing you to manipulate the field from outside the widget.
 -   Custom rendering options available to create custom Markdown.
 
 ## Usage
