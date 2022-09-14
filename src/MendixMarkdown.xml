@@ -25,26 +25,12 @@
             </property>
         </propertyGroup>
         <propertyGroup caption="Toolbar">
-            <property key="mdeToolbar" type="object" isList="true" required="false">
+            <property key="mdeToolbarButtons" type="object" isList="true" required="false">
                 <caption>Toolbar customization</caption>
-                <description>Refer to the EasyMDE GitHub page for possible options: https://github.com/Ionaru/easy-markdown-editor</description>
+                <description>Add or remove buttons to the editor toolbar.</description>
                 <properties>
-                    <propertyGroup caption="Button configuration">
-                        <property key="mdeToolbarOptionCaption" type="string" required="false">
-                            <caption>Button caption</caption>
-                            <description></description>
-                        </property>
-                        <property key="mdeToolbarOptionClassName" type="string" required="false">
-                            <caption>Button class</caption>
-                            <description></description>
-                        </property>
-                        <property key="mdeToolbarButtonInsertPosition" type="integer" defaultValue="-1">
-                            <caption>Button position</caption>
-                            <description>Position in the toolbar to insert the button. -1 means insert at last position on the toolbar.</description>
-                        </property>
-                    </propertyGroup>
-                    <propertyGroup caption="Action">
-                        <property key="mdeToolbarButtonActionType" type="enumeration" defaultValue="replace">
+                    <propertyGroup caption="Button action">
+                        <property key="buttonActionType" type="enumeration" defaultValue="replace">
                             <caption>Button action</caption>
                             <description>Type of action the button should perform</description>
                             <enumerationValues>
@@ -53,18 +39,31 @@
                                 <enumerationValue key="divider">Divider</enumerationValue>
                             </enumerationValues>
                         </property>
-                            <property key="mdeToolbarButtonAction" type="action">
-                                <caption>Action</caption>
-                                <description>Action to be performed when button is clicked</description>
-                            </property>
-                            <property key="mdeToolbarButtonLeftReplace" type="string" required="false">
-                                <caption>Left hand side replace</caption>
-                                <description></description>
-                            </property>
-                            <property key="mdeToolbarButtonRightReplace" type="string" required="false">
-                                <caption>Right hand side replace</caption>
-                                <description></description>
-                            </property>
+                        <property key="buttonCaption" type="string" required="false">
+                            <caption>Button caption</caption>
+                            <description></description>
+                        </property>
+                        <property key="buttonAction" type="action">
+                            <caption>Action</caption>
+                            <description>Action to be performed when button is clicked</description>
+                        </property>
+                        <property key="buttonLeftReplace" type="string" required="false">
+                            <caption>Left hand side replace</caption>
+                            <description></description>
+                        </property>
+                        <property key="buttonRightReplace" type="string" required="false">
+                            <caption>Right hand side replace</caption>
+                            <description></description>
+                        </property>
+                        <property key="buttonClass" type="string" required="false">
+                            <caption>Button class</caption>
+                            <description></description>
+                        </property>
+                        <property key="buttonInsertPosition" type="integer" defaultValue="-1">
+                            <caption>Button position</caption>
+                            <description>Position in the toolbar to insert the button.
+Use -1 to insert at last position on the toolbar.</description>
+                        </property>
                     </propertyGroup>
                 </properties>
             </property>

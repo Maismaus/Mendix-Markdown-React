@@ -1,59 +1,31 @@
-import { MdeToolbarType } from "typings/MendixMarkdownProps";
+import { MdeToolbarButtonsType } from "typings/MendixMarkdownProps";
 
-export function Toolbar(mdeToolbar: MdeToolbarType[]): ReadonlyArray<"|" | String | Object> {
-    let toolbarButtons: (string | object)[] = [
-        "bold",
-        "italic",
-        "heading",
-        "|",
-        "quote",
-        "unordered-list",
-        "ordered-list",
-        "clean-block",
-        "code",
-        "|",
-        "horizontal-rule",
-        "link",
-        "image",
-        "table",
-        "|",
-        "preview",
-        "side-by-side",
-        "fullscreen",
-        "|",
-        "guide",
-        "|",
-        "undo",
-        "redo"
-    ];
+export function Toolbar(mdeToolbar: MdeToolbarButtonsType[]): ReadonlyArray<"|" | String | Object> {
+    let toolbarButtons: (string | object)[] = ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "clean-block", "code", "|", "horizontal-rule", "link", "image", "table", "|", "preview", "side-by-side", "fullscreen", "|", "guide", "|", "undo", "redo"];
 
     for (let btn of mdeToolbar) {
         let newButton = {};
-        if (btn.mdeToolbarButtonActionType == "divider") {
+        if (btn.buttonActionType == "divider") {
             newButton = "|";
         } else {
             newButton = {
                 action: (editor: EasyMDE) => {
-                    if (btn.mdeToolbarButtonActionType == "replace") {
-                        editor.codemirror.replaceSelection(
-                            btn.mdeToolbarButtonLeftReplace +
-                                editor.codemirror.getSelection() +
-                                btn.mdeToolbarButtonRightReplace
-                        );
+                    if (btn.buttonActionType == "replace") {
+                        editor.codemirror.replaceSelection(btn.buttonLeftReplace + editor.codemirror.getSelection() + btn.buttonRightReplace);
                         editor.codemirror.focus();
                     }
-                    if (btn.mdeToolbarButtonActionType == "action") {
-                        btn.mdeToolbarButtonAction?.execute();
+                    if (btn.buttonActionType == "action") {
+                        btn.buttonAction?.execute();
                     }
                 },
-                className: btn.mdeToolbarOptionClassName,
-                title: btn.mdeToolbarOptionCaption
+                className: btn.buttonClass,
+                title: btn.buttonCaption
             };
         }
-        if (btn.mdeToolbarButtonInsertPosition == -1) {
+        if (btn.buttonInsertPosition == -1) {
             toolbarButtons.push(newButton);
         } else {
-            toolbarButtons.splice(btn.mdeToolbarButtonInsertPosition, 0, newButton);
+            toolbarButtons.splice(btn.buttonInsertPosition, 0, newButton);
         }
     }
 

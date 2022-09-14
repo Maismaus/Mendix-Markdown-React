@@ -8,7 +8,7 @@ import "easymde/dist/easymde.min.css";
 import { MendixMarkdownContainerProps } from "../../typings/MendixMarkdownProps";
 
 export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElement {
-    const { textAttribute, mdeOptions, mdeRenderOptions, mdeSpellChecker, mdeHideIcons, mdeToolbar, domEventListener } = props;
+    const { textAttribute, mdeOptions, mdeRenderOptions, mdeSpellChecker, mdeHideIcons, mdeToolbarButtons, domEventListener } = props;
 
     const markdownOptions = useMemo(() => {
         return {
@@ -17,7 +17,7 @@ export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElemen
                 return MarkdownRenderer(markdownPlainText, mdeRenderOptions);
             },
             hideIcons: mdeHideIcons.split(" "),
-            toolbar: Toolbar(mdeToolbar)
+            toolbar: Toolbar(mdeToolbarButtons)
         } as SimpleMDE.Options;
     }, []);
 

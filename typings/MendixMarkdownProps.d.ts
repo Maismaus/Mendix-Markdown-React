@@ -5,16 +5,16 @@
  */
 import { ActionValue, DynamicValue, EditableValue } from "mendix";
 
-export type MdeToolbarButtonActionTypeEnum = "replace" | "action" | "divider";
+export type ButtonActionTypeEnum = "replace" | "action" | "divider";
 
-export interface MdeToolbarType {
-    mdeToolbarOptionCaption: string;
-    mdeToolbarOptionClassName: string;
-    mdeToolbarButtonInsertPosition: number;
-    mdeToolbarButtonActionType: MdeToolbarButtonActionTypeEnum;
-    mdeToolbarButtonAction?: ActionValue;
-    mdeToolbarButtonLeftReplace: string;
-    mdeToolbarButtonRightReplace: string;
+export interface MdeToolbarButtonsType {
+    buttonActionType: ButtonActionTypeEnum;
+    buttonCaption: string;
+    buttonAction?: ActionValue;
+    buttonLeftReplace: string;
+    buttonRightReplace: string;
+    buttonClass: string;
+    buttonInsertPosition: number;
 }
 
 export interface MdeOptionsType {
@@ -34,14 +34,14 @@ export interface MdeRenderOptionsType {
     mdeRenderOptionHtmlEnd: string;
 }
 
-export interface MdeToolbarPreviewType {
-    mdeToolbarOptionCaption: string;
-    mdeToolbarOptionClassName: string;
-    mdeToolbarButtonInsertPosition: number | null;
-    mdeToolbarButtonActionType: MdeToolbarButtonActionTypeEnum;
-    mdeToolbarButtonAction: {} | null;
-    mdeToolbarButtonLeftReplace: string;
-    mdeToolbarButtonRightReplace: string;
+export interface MdeToolbarButtonsPreviewType {
+    buttonActionType: ButtonActionTypeEnum;
+    buttonCaption: string;
+    buttonAction: {} | null;
+    buttonLeftReplace: string;
+    buttonRightReplace: string;
+    buttonClass: string;
+    buttonInsertPosition: number | null;
 }
 
 export interface MdeOptionsPreviewType {
@@ -65,7 +65,7 @@ export interface MendixMarkdownContainerProps {
     id: string;
     textAttribute: EditableValue<string>;
     readOnly: DynamicValue<boolean>;
-    mdeToolbar: MdeToolbarType[];
+    mdeToolbarButtons: MdeToolbarButtonsType[];
     mdeHideIcons: string;
     mdeSpellChecker: boolean;
     mdeOptions: MdeOptionsType[];
@@ -77,7 +77,7 @@ export interface MendixMarkdownPreviewProps {
     readOnly: boolean;
     textAttribute: string;
     readOnly: string;
-    mdeToolbar: MdeToolbarPreviewType[];
+    mdeToolbarButtons: MdeToolbarButtonsPreviewType[];
     mdeHideIcons: string;
     mdeSpellChecker: boolean;
     mdeOptions: MdeOptionsPreviewType[];

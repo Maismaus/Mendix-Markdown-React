@@ -1,196 +1,69 @@
-// import { ContainerProps, DropZoneProps, RowLayoutProps, StructurePreviewProps } from "@mendix/piw-utils-internal";
-// @ts-ignore
-import { changePropertyIn, hideNestedPropertiesIn, hidePropertiesIn, hidePropertyIn, Problem, Properties, transformGroupsIntoTabs } from "@mendix/pluggable-widgets-tools";
+import { Problem, Properties, PropertyGroup } from "@mendix/pluggable-widgets-tools";
 
-// @ts-ignore
-import { MdeToolbarPreviewType, MendixMarkdownPreviewProps } from "../typings/MendixMarkdownProps";
+import { MdeToolbarButtonsPreviewType, MendixMarkdownPreviewProps } from "../typings/MendixMarkdownProps";
 
-//@ts-ignore
-export function getProperties(values: MendixMarkdownPreviewProps, defaultProperties: Properties, platform: "web" | "desktop"): Properties {
-    values.mdeToolbar.forEach((toolbarButton: MdeToolbarPreviewType, index) => {
-        if (toolbarButton.mdeToolbarButtonActionType === "divider") {
-            hidePropertyIn(defaultProperties, values, "mdeToolbar", index, "mdeToolbarOptionCaption");
+export function getProperties(values: MendixMarkdownPreviewProps, defaultProperties: Properties): Properties {
+    //Lambda function to remove values from properties
+    const spliceArray = function (index: number, defaultProperties: PropertyGroup[]) {
+        defaultProperties.splice(index, 1);
+    };
+
+    //Show and hide buttons based on the button action
+    values.mdeToolbarButtons.forEach((toolbarButton: MdeToolbarButtonsPreviewType, index) => {
+        if (toolbarButton.buttonActionType === "action") {
+            //Call the modifyProperty with the spliceArray Lambda function to remove the given property from defaultProperties using splice
+            modifyProperty(spliceArray, defaultProperties, values, "mdeToolbarButtons", index, "buttonLeftReplace");
+            modifyProperty(spliceArray, defaultProperties, values, "mdeToolbarButtons", index, "buttonRightReplace");
+        }
+        if (toolbarButton.buttonActionType === "replace") {
+            modifyProperty(spliceArray, defaultProperties, values, "mdeToolbarButtons", index, "buttonAction");
+        }
+        if (toolbarButton.buttonActionType === "divider") {
+            modifyProperty(spliceArray, defaultProperties, values, "mdeToolbarButtons", index, "buttonCaption");
+            modifyProperty(spliceArray, defaultProperties, values, "mdeToolbarButtons", index, "buttonAction");
+            modifyProperty(spliceArray, defaultProperties, values, "mdeToolbarButtons", index, "buttonClass");
+            modifyProperty(spliceArray, defaultProperties, values, "mdeToolbarButtons", index, "buttonLeftReplace");
+            modifyProperty(spliceArray, defaultProperties, values, "mdeToolbarButtons", index, "buttonRightReplace");
         }
     });
-    hidePropertyIn(defaultProperties, values, "mdeToolbar", 0, "mdeToolbarOptionCaption");
-    // hidePropertyIn(defaultProperties, values, "testtwo");
-
-    // if (values.pagination !== "buttons") {
-    //     hidePropertyIn(defaultProperties, values, "pagingPosition");
-    // }
-    delete defaultProperties[1]?.properties; //This works?
     return defaultProperties;
 }
-
-// export const getPreview = (values: DatagridPreviewProps, isDarkMode: boolean): StructurePreviewProps => {
-//     const hasColumns = values.columns && values.columns.length > 0;
-//     const columnProps: ColumnsPreviewType[] = hasColumns
-//         ? values.columns
-//         : [
-//               {
-//                   header: "Column",
-//                   tooltip: "",
-//                   attribute: "",
-//                   width: "autoFit",
-//                   columnClass: "",
-//                   filter: { widgetCount: 0, renderer: () => null },
-//                   resizable: false,
-//                   showContentAs: "attribute",
-//                   content: { widgetCount: 0, renderer: () => null },
-//                   dynamicText: "Dynamic text",
-//                   draggable: false,
-//                   hidable: "no",
-//                   size: 1,
-//                   sortable: false,
-//                   alignment: "left",
-//                   wrapText: false
-//               }
-//           ];
-//     const columns: RowLayoutProps = {
-//         type: "RowLayout",
-//         columnSize: "fixed",
-//         children: columnProps.map(
-//             column =>
-//                 ({
-//                     type: "Container",
-//                     borders: true,
-//                     grow: column.width === "manual" && column.size ? column.size : 1,
-//                     backgroundColor: values.columnsHidable && column.hidable === "hidden" ? (isDarkMode ? "#3E3E3E" : "#F5F5F5") : undefined,
-//                     children: [
-//                         column.showContentAs === "customContent"
-//                             ? {
-//                                   type: "DropZone",
-//                                   property: column.content
-//                               }
-//                             : {
-//                                   type: "Container",
-//                                   padding: 8,
-//                                   children: [
-//                                       {
-//                                           type: "Text",
-//                                           content: column.showContentAs === "dynamicText" ? column.dynamicText ?? "Dynamic text" : `[${column.attribute ? column.attribute : "No attribute selected"}]`,
-//                                           fontSize: 10
-//                                       }
-//                                   ]
-//                               }
-//                     ]
-//                 } as ContainerProps)
-//         )
-//     };
-//     const titleHeader: RowLayoutProps = {
-//         type: "RowLayout",
-//         columnSize: "fixed",
-//         backgroundColor: isDarkMode ? "#3B5C8F" : "#DAEFFB",
-//         borders: true,
-//         borderWidth: 1,
-//         children: [
-//             {
-//                 type: "Container",
-//                 padding: 4,
-//                 children: [
-//                     {
-//                         type: "Text",
-//                         content: "Data grid 2",
-//                         fontColor: isDarkMode ? "#6DB1FE" : "#2074C8"
-//                     }
-//                 ]
-//             }
-//         ]
-//     };
-//     const headerFilters = {
-//         type: "RowLayout",
-//         columnSize: "fixed",
-//         borders: true,
-//         children: [
-//             {
-//                 type: "DropZone",
-//                 property: values.filtersPlaceholder,
-//                 placeholder: "Place filter widget(s) here"
-//             } as DropZoneProps
-//         ]
-//     } as RowLayoutProps;
-//     const headers: RowLayoutProps = {
-//         type: "RowLayout",
-//         columnSize: "fixed",
-//         children: columnProps.map(column => {
-//             const isColumnHidden = values.columnsHidable && column.hidable === "hidden";
-//             const content: ContainerProps = {
-//                 type: "Container",
-//                 borders: true,
-//                 grow: values.columns.length > 0 ? (column.width === "manual" && column.size ? column.size : 1) : undefined,
-//                 backgroundColor: isColumnHidden ? (isDarkMode ? "#4F4F4F" : "#DCDCDC") : isDarkMode ? "#3E3E3E" : "#F5F5F5",
-//                 children: [
-//                     {
-//                         type: "Container",
-//                         padding: 8,
-//                         children: [
-//                             {
-//                                 type: "Text",
-//                                 bold: true,
-//                                 fontSize: 10,
-//                                 content: column.header ? column.header : "Header",
-//                                 fontColor: column.header ? undefined : isColumnHidden ? (isDarkMode ? "#4F4F4F" : "#DCDCDC") : isDarkMode ? "#3E3E3E" : "#F5F5F5"
-//                             }
-//                         ]
-//                     },
-//                     ...(hasColumns && values.columnsFilterable
-//                         ? [
-//                               {
-//                                   type: "DropZone",
-//                                   property: column.filter,
-//                                   placeholder: "Place filter widget here"
-//                               } as DropZoneProps
-//                           ]
-//                         : [])
-//                 ]
-//             };
-//             return values.columns.length > 0
-//                 ? {
-//                       type: "Selectable",
-//                       object: column,
-//                       grow: column.width === "manual" && column.size ? column.size : 1,
-//                       child: {
-//                           type: "Container",
-//                           children: [content]
-//                       }
-//                   }
-//                 : content;
-//         })
-//     };
-//     const footer =
-//         values.showEmptyPlaceholder === "custom"
-//             ? [
-//                   {
-//                       type: "RowLayout",
-//                       columnSize: "fixed",
-//                       borders: true,
-//                       children: [
-//                           {
-//                               type: "DropZone",
-//                               property: values.emptyPlaceholder,
-//                               placeholder: "Empty list message: Place widgets here"
-//                           } as DropZoneProps
-//                       ]
-//                   } as RowLayoutProps
-//               ]
-//             : [];
-//     return {
-//         type: "Container",
-//         children: [titleHeader, ...(values.showHeaderFilters && values.filterList.length > 0 ? [headerFilters] : []), headers, ...Array.from({ length: 5 }).map(() => columns), ...footer]
-//     };
-// };
 
 // @ts-ignore
 export function check(values: MendixMarkdownPreviewProps): Problem[] {
     const errors: Problem[] = [];
     // values.mdeToolbar.forEach((column: MdeToolbarPreviewType, index) => {
-    //     if (column.mdeToolbarButtonActionType === "divider") {
-    //         errors.push({
-    //             property: `mdeToolbar/${index + 1}/mdeToolbarOptionCaption`,
-    //             message: "Error 0!"
-    //         });
+    // if (column.mdeToolbarButtonActionType === "divider") {
+    //     errors.push({
+    //         property: `mdeToolbar/${index + 1}/mdeToolbarOptionCaption`,
+    //         message: "Error 0!"
+    //     });
     //     }
     // });
 
     return errors;
+}
+
+//This function is modified from PageEditorUtils.js because I couldn't get it to work from the pluggable widget tools itself
+//Ideally it should be used from there
+function modifyProperty<T, TKey extends keyof T>(modify: Function, propertyGroups: PropertyGroup[], _value: T, key: TKey, nestedPropIndex?: number, nestedPropKey?: T[TKey] extends Array<infer TChild> ? keyof TChild : never) {
+    propertyGroups.forEach(propGroup => {
+        var _a;
+        if (propGroup.propertyGroups) {
+            modifyProperty(modify, propGroup.propertyGroups, _value, key, nestedPropIndex, nestedPropKey);
+        }
+        (_a = propGroup.properties) === null || _a === void 0
+            ? void 0
+            : _a.forEach((prop, index, array) => {
+                  if (prop.key === key) {
+                      if (nestedPropIndex === undefined || nestedPropKey === undefined) {
+                          modify(index, array);
+                      } else if (prop.objects) {
+                          modifyProperty(modify, prop.objects[nestedPropIndex].properties, _value, nestedPropKey);
+                      } else if (prop.properties) {
+                          modifyProperty(modify, prop.properties[nestedPropIndex], _value, nestedPropKey);
+                      }
+                  }
+              });
+    });
 }
