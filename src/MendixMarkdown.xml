@@ -18,7 +18,7 @@
                     <attributeType name="String" />
                 </attributeTypes>
             </property>
-            <property key="readOnly" type="expression" defaultValue="true" required="true">
+            <property key="readOnly" type="expression" defaultValue="false" required="true">
                 <caption>Read only</caption>
                 <description></description>
                 <returnType type="Boolean" />
@@ -144,7 +144,7 @@ Use -1 to insert at last position on the toolbar.</description>
         <propertyGroup caption="Advanced">
             <property key="domEventListener" type="textTemplate" required="false">
                 <caption>DOM event listener</caption>
-                <description>Adds a listener to the body element, allowing you to manipulate the value from outside the widget.</description>
+                <description>Adds a listener to the body element, allowing you to manipulate the value from outside the widget. Should be unique if your page contains multiple Markdown widgets.</description>
             </property>
         </propertyGroup>
     </properties>
