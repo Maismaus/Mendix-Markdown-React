@@ -23,10 +23,6 @@
                 <description></description>
                 <returnType type="Boolean" />
             </property>
-            <property key="test" type="boolean" defaultValue="true" required="true">
-                <caption>test</caption>
-                <description></description>
-            </property>
         </propertyGroup>
         <propertyGroup caption="Toolbar">
             <property key="mdeToolbar" type="object" isList="true" required="false">
