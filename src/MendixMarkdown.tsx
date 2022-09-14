@@ -7,7 +7,7 @@ import { MarkdownViewer } from "./components/MarkdownViewer";
 
 export function MendixMarkdown(props: MendixMarkdownContainerProps): ReactElement {
     const { readOnly } = props;
-    if (readOnly.value == true) {
+    if (readOnly.value === true) {
         return MarkdownViewer(props);
     }
     return MarkdownEditor(props);

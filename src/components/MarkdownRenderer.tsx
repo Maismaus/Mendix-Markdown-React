@@ -38,18 +38,16 @@ export function MarkdownRenderer(markdownPlainText: string, mdeRenderOptions: Md
 function getRegExp(renderOption: MdeRenderOptionsType): RegExp {
     // prettier-ignore
     const regExp = new RegExp(
-        "^(" + renderOption.mdeRenderOptionStart +")" + //Begin of tag regex
-        "([\\S\\s]+?)" + //Any content inbetween
-        "(" + renderOption.mdeRenderOptionEnd + ")" //End of tag regex
+        "^(" + renderOption.mdeRenderOptionStart +")" + // Begin of tag regex
+        "([\\S\\s]+?)" + // Any content inbetween
+        "(" + renderOption.mdeRenderOptionEnd + ")" // End of tag regex
     );
     return regExp;
 }
 
 function getContent(content: string, searchCondition: string): string {
-    if (searchCondition)
-        return content.substring(
-            content.indexOf(searchCondition) + searchCondition.length,
-            content.lastIndexOf(searchCondition)
-        );
+    if (searchCondition) {
+        return content.substring(content.indexOf(searchCondition) + searchCondition.length, content.lastIndexOf(searchCondition));
+    }
     return content.trim();
 }

@@ -8,7 +8,7 @@ import "easymde/dist/easymde.min.css";
 import { MendixMarkdownContainerProps } from "../../typings/MendixMarkdownProps";
 
 export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElement {
-    const { textAttribute, mdeOptions, mdeRenderOptions, mdeSpellChecker, mdeHideIcons, mdeToolbarButtons, domEventListener } = props;
+    const { textAttribute, mdeOptions, mdeHideIcons, mdeRenderOptions, mdeSpellChecker, mdeToolbarButtons, domEventListener } = props;
 
     const markdownOptions = useMemo(() => {
         return {
@@ -19,14 +19,14 @@ export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElemen
             hideIcons: mdeHideIcons.split(" "),
             toolbar: Toolbar(mdeToolbarButtons)
         } as SimpleMDE.Options;
-    }, []);
+    }, [mdeHideIcons, mdeRenderOptions, mdeSpellChecker, mdeToolbarButtons]);
 
-    //Add options defined in Mendix to the SimpleMDE.Options
+    // Add options defined in Mendix to the SimpleMDE.Options
     mdeOptions.forEach(option => {
         (markdownOptions as any)[option.key] = option.value;
     });
 
-    //Create CodeMirror reference so we can use the CodeMirror object later
+    // Create CodeMirror reference so we can use the CodeMirror object later
     const [codemirrorInstance, setCodemirrorInstance] = useState<Editor | null>(null);
     const getCmInstanceCallback = useCallback((editor: Editor) => {
         setCodemirrorInstance(editor);
