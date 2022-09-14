@@ -65,6 +65,7 @@ export interface MendixMarkdownContainerProps {
     id: string;
     textAttribute: EditableValue<string>;
     readOnly: DynamicValue<boolean>;
+    test: boolean;
     mdeToolbar: MdeToolbarType[];
     mdeHideIcons: string;
     mdeSpellChecker: boolean;
@@ -77,6 +78,7 @@ export interface MendixMarkdownPreviewProps {
     readOnly: boolean;
     textAttribute: string;
     readOnly: string;
+    test: boolean;
     mdeToolbar: MdeToolbarPreviewType[];
     mdeHideIcons: string;
     mdeSpellChecker: boolean;
