@@ -1,8 +1,33 @@
 import { MdeToolbarButtonsType } from "typings/MendixMarkdownProps";
+// import { useEffect } from "react";
 import EasyMDE from "easymde";
 
 export function Toolbar(mdeToolbar: MdeToolbarButtonsType[]): ReadonlyArray<"|" | string | object> {
-    const toolbarButtons: Array<string | object> = ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "clean-block", "code", "|", "horizontal-rule", "link", "image", "table", "|", "preview", "side-by-side", "fullscreen", "|", "guide", "|", "undo", "redo"];
+    const toolbarButtons: Array<string | object> = [
+        "bold",
+        "italic",
+        "heading",
+        "|",
+        "quote",
+        "unordered-list",
+        "ordered-list",
+        "clean-block",
+        "code",
+        "|",
+        "horizontal-rule",
+        "link",
+        "image",
+        "table",
+        "|",
+        "preview",
+        "side-by-side",
+        "fullscreen",
+        "|",
+        "guide",
+        "|",
+        "undo",
+        "redo",
+    ];
     for (const btn of mdeToolbar) {
         let newButton = {};
         if (btn.buttonActionType === "divider") {
@@ -15,11 +40,13 @@ export function Toolbar(mdeToolbar: MdeToolbarButtonsType[]): ReadonlyArray<"|" 
                         editor.codemirror.focus();
                     }
                     if (btn.buttonActionType === "action") {
+                        // useEffect(() => {
                         btn.buttonAction?.execute();
+                        // });
                     }
                 },
                 className: btn.buttonClass,
-                title: btn.buttonCaption
+                title: btn.buttonCaption,
             };
         }
         if (btn.buttonInsertPosition === -1) {
