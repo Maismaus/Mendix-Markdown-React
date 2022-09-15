@@ -127,7 +127,7 @@ Use -1 to insert at last position on the toolbar.</description>
                             </property>
                             <property key="mdeRenderPreviewTag" type="string" required="false" defaultValue="">
                                 <caption>Preview tag</caption>
-                                <description>Regex defining where the inner HTML is defined. Leave empty for all content.</description>
+                                <description>Regex defining where the inner HTML starts for the preview. Content after this regex is put within the HTML tags on the preview. Leave empty for all content.</description>
                             </property>
                             <property key="mdeRenderOptionHtmlStart" type="string" required="true" defaultValue="">
                                 <caption>Html start</caption>

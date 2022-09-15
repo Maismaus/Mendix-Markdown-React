@@ -45,8 +45,9 @@ function getRegExp(renderOption: MdeRenderOptionsType): RegExp {
 }
 
 function getContent(content: string, searchCondition: string): string {
-    if (searchCondition && content.indexOf(searchCondition) > -1) {
-        return content.substring(content.indexOf(searchCondition) + searchCondition.length, content.lastIndexOf(searchCondition));
+    const startIndex = content.search(searchCondition);
+    if (searchCondition && startIndex > -1) {
+        return content.substring(startIndex).trim();
     }
     return content.trim();
 }
