@@ -1,5 +1,4 @@
 import { MdeToolbarButtonsType } from "typings/MendixMarkdownProps";
-// import { useEffect } from "react";
 import EasyMDE from "easymde";
 
 export function Toolbar(mdeToolbar: MdeToolbarButtonsType[]): ReadonlyArray<"|" | string | object> {
@@ -40,9 +39,7 @@ export function Toolbar(mdeToolbar: MdeToolbarButtonsType[]): ReadonlyArray<"|" 
                         editor.codemirror.focus();
                     }
                     if (btn.buttonActionType === "action") {
-                        // useEffect(() => {
                         btn.buttonAction?.execute();
-                        // });
                     }
                 },
                 className: btn.buttonClass,
@@ -55,6 +52,5 @@ export function Toolbar(mdeToolbar: MdeToolbarButtonsType[]): ReadonlyArray<"|" 
             toolbarButtons.splice(btn.buttonInsertPosition, 0, newButton);
         }
     }
-
     return toolbarButtons;
 }

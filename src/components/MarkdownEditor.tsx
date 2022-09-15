@@ -10,10 +10,6 @@ import { MendixMarkdownContainerProps } from "../../typings/MendixMarkdownProps"
 export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElement {
     const { textAttribute, mdeOptions, mdeHideIcons, mdeSpellChecker, mdeToolbarButtons, mdeRenderOptions, domEventListener } = props;
 
-    const toolbar = useMemo(() => {
-        return Toolbar(mdeToolbarButtons);
-    }, [mdeToolbarButtons]);
-
     const markdownOptions = useMemo(() => {
         return {
             spellChecker: mdeSpellChecker,
@@ -21,9 +17,9 @@ export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElemen
                 return MarkdownRenderer(markdownPlainText, mdeRenderOptions);
             },
             hideIcons: mdeHideIcons.split(" "),
-            toolbar: toolbar,
+            toolbar: Toolbar(mdeToolbarButtons),
         } as SimpleMDE.Options;
-    }, [mdeHideIcons, mdeSpellChecker]);
+    }, [mdeHideIcons, mdeSpellChecker, mdeRenderOptions]);
 
     // Add options defined in Mendix to the SimpleMDE.Options
     mdeOptions.forEach((option) => {
