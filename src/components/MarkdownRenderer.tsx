@@ -17,8 +17,7 @@ export function MarkdownRenderer(markdownPlainText: string, mdeRenderOptions: Md
                         const match = rule.exec(src);
                         if (match) {
                             return {
-                                // Token to generate
-                                type: renderOption.mdeRenderOptionName, // Should match "name" above
+                                type: renderOption.mdeRenderOptionName,
                                 raw: match[0], // The text that you want your token to consume from the source
                                 text: getContent(match[2], renderOption.mdeRenderPreviewTag) // Any custom properties you want the Renderer to access
                             };
