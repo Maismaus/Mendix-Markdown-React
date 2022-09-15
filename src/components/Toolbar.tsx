@@ -35,8 +35,12 @@ export function Toolbar(mdeToolbar: MdeToolbarButtonsType[]): ReadonlyArray<"|" 
             newButton = {
                 action: (editor: EasyMDE) => {
                     if (btn.buttonActionType === "replace") {
-                        editor.codemirror.replaceSelection(btn.buttonLeftReplace + editor.codemirror.getSelection() + btn.buttonRightReplace);
-                        editor.codemirror.focus();
+                        const cm = editor.codemirror;
+                        const content = btn.buttonLeftReplace + cm.getSelection() + btn.buttonRightReplace;
+                        const newPosition = cm.getCursor().ch + content.length - btn.buttonRightReplace.length;
+                        cm.replaceSelection(content);
+                        cm.setCursor(cm.getCursor().line, newPosition);
+                        cm.focus();
                     }
                     if (btn.buttonActionType === "action") {
                         btn.buttonAction?.execute();
