@@ -1,6 +1,5 @@
 import { ReactElement, createElement } from "react";
 import { MarkdownRenderer } from "./MarkdownRenderer";
-import "easymde/dist/easymde.min.css";
 import { MendixMarkdownContainerProps } from "../../typings/MendixMarkdownProps";
 
 export function MarkdownViewer(props: MendixMarkdownContainerProps): ReactElement {

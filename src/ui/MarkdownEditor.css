@@ -1,0 +1,4 @@
+.EasyMDEContainer .fullscreen,
+.EasyMDEContainer .CodeMirror-fullscreen {
+    z-index: 999;
+}

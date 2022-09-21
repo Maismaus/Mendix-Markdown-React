@@ -4,7 +4,6 @@ import { Editor } from "codemirror";
 import { Toolbar } from "./Toolbar";
 import { MarkdownRenderer } from "./MarkdownRenderer";
 import SimpleMDE from "easymde";
-import "easymde/dist/easymde.min.css";
 import { MendixMarkdownContainerProps } from "../../typings/MendixMarkdownProps";
 
 export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElement {
