@@ -1,5 +1,5 @@
 import { ReactElement, createElement, useMemo, useState, useCallback, useEffect } from "react";
-import { SimpleMdeReact } from "react-simplemde-editor";
+import { SimpleMdeReact, SimpleMdeToCodemirrorEvents } from "react-simplemde-editor";
 import { Editor } from "codemirror";
 import { Toolbar } from "./Toolbar";
 import { MarkdownRenderer } from "./MarkdownRenderer";
@@ -7,8 +7,22 @@ import SimpleMDE from "easymde";
 import { MendixMarkdownContainerProps } from "../../typings/MendixMarkdownProps";
 
 export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElement {
-    const { textAttribute, mdeOptions, mdeHideIcons, mdeSpellChecker, mdeToolbarButtons, mdeRenderOptions, domEventListener } = props;
-
+    const { textAttribute, mdeOptions, mdeHideIcons, mdeOverrideTabKey, mdeSpellChecker, mdeToolbarButtons, mdeRenderOptions, domEventListener } = props;
+    const events = mdeOverrideTabKey
+        ? useMemo(() => {
+              return {
+                  /* Stops propagation if the tab key is pressed.
+                   ** Because tab key might be used by used who want to jump to the next field, this is a configurable option in the widget
+                   ** Using extraKeys doesn't seem to work, probably similar issue as described here: https://github.com/RIP21/react-simplemde-editor/issues/183
+                   */
+                  keyHandled: (_editor, _key, event) => {
+                      if (event.key == "Tab") {
+                          event.stopImmediatePropagation();
+                      }
+                  }
+              } as SimpleMdeToCodemirrorEvents;
+          }, [])
+        : undefined;
     const markdownOptions = useMemo(() => {
         return {
             spellChecker: mdeSpellChecker,
@@ -16,12 +30,15 @@ export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElemen
                 return MarkdownRenderer(markdownPlainText, mdeRenderOptions);
             },
             hideIcons: mdeHideIcons.split(" "),
-            toolbar: Toolbar(mdeToolbarButtons),
+            tabSize: 10,
+            indentWithTab: true,
+
+            toolbar: Toolbar(mdeToolbarButtons)
         } as SimpleMDE.Options;
     }, [mdeHideIcons, mdeSpellChecker, mdeRenderOptions]);
 
     // Add options defined in Mendix to the SimpleMDE.Options
-    mdeOptions.forEach((option) => {
+    mdeOptions.forEach(option => {
         (markdownOptions as any)[option.key] = option.value;
     });
 
@@ -47,5 +64,5 @@ export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElemen
             console.debug("Unmounting");
         };
     }, [codemirrorInstance, domEventListener]);
-    return <SimpleMdeReact key="1" options={markdownOptions} value={textAttribute.value} onChange={(value) => textAttribute.setValue(value)} getCodemirrorInstance={getCmInstanceCallback} />;
+    return <SimpleMdeReact events={events} options={markdownOptions} value={textAttribute.value} onChange={value => textAttribute.setValue(value)} getCodemirrorInstance={getCmInstanceCallback} />;
 }

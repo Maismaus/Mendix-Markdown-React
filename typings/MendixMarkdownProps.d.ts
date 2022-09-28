@@ -67,6 +67,7 @@ export interface MendixMarkdownContainerProps {
     readOnly: DynamicValue<boolean>;
     mdeToolbarButtons: MdeToolbarButtonsType[];
     mdeHideIcons: string;
+    mdeOverrideTabKey: boolean;
     mdeSpellChecker: boolean;
     mdeOptions: MdeOptionsType[];
     mdeRenderOptions: MdeRenderOptionsType[];
@@ -79,6 +80,7 @@ export interface MendixMarkdownPreviewProps {
     readOnly: string;
     mdeToolbarButtons: MdeToolbarButtonsPreviewType[];
     mdeHideIcons: string;
+    mdeOverrideTabKey: boolean;
     mdeSpellChecker: boolean;
     mdeOptions: MdeOptionsPreviewType[];
     mdeRenderOptions: MdeRenderOptionsPreviewType[];

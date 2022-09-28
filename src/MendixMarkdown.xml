@@ -74,6 +74,10 @@ Use -1 to insert at last position on the toolbar.</description>
         </propertyGroup>
         <propertyGroup caption="Options">
             <propertyGroup caption="Basic">
+                <property key="mdeOverrideTabKey" type="boolean" required="true" defaultValue="false">
+                    <caption>Override tab key</caption>
+                    <description>Prevents tab key from jumping to the next form field. Decreases accessibility if enabled.</description>
+                </property>
                 <property key="mdeSpellChecker" type="boolean" required="true" defaultValue="true">
                     <caption>Use spell checker</caption>
                     <description>Spellchecker automatically highlights misspelled words in red.</description>
