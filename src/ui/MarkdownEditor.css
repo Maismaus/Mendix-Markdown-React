@@ -1,4 +1,5 @@
 .EasyMDEContainer .fullscreen,
-.EasyMDEContainer .CodeMirror-fullscreen {
-    z-index: 999;
+.EasyMDEContainer .CodeMirror-fullscreen,
+.editor-preview-side {
+    z-index: 99;
 }

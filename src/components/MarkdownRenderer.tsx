@@ -2,7 +2,7 @@ import { MdeRenderOptionsType } from "../../typings/MendixMarkdownProps";
 import { marked } from "marked";
 // Custom tokens inspired by https://github.com/markedjs/marked/pull/2043
 export function MarkdownRenderer(markdownPlainText: string, mdeRenderOptions: MdeRenderOptionsType[]): string {
-    const customTokens: marked.MarkedExtension[] = mdeRenderOptions.map((renderOption) => {
+    const customTokens: marked.MarkedExtension[] = mdeRenderOptions.map(renderOption => {
         return {
             extensions: [
                 {
@@ -19,15 +19,15 @@ export function MarkdownRenderer(markdownPlainText: string, mdeRenderOptions: Md
                             return {
                                 type: renderOption.mdeRenderOptionName,
                                 raw: match[0], // The text that you want your token to consume from the source
-                                text: getContent(match[2], renderOption.mdeRenderPreviewTag), // Any custom properties you want the Renderer to access
+                                text: getContent(match[2], renderOption.mdeRenderPreviewTag) // Any custom properties you want the Renderer to access
                             };
                         }
                     },
                     renderer(token) {
                         return `${renderOption.mdeRenderOptionHtmlStart}${token.text}${renderOption.mdeRenderOptionHtmlEnd}\n`;
-                    },
-                },
-            ],
+                    }
+                }
+            ]
         } as marked.MarkedExtension;
     });
     marked.use(...customTokens);

@@ -16,7 +16,7 @@ export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElemen
                    ** Using extraKeys doesn't seem to work, probably similar issue as described here: https://github.com/RIP21/react-simplemde-editor/issues/183
                    */
                   keyHandled: (_editor, _key, event) => {
-                      if (event.key == "Tab") {
+                      if (event.key === "Tab") {
                           event.stopImmediatePropagation();
                       }
                   }
