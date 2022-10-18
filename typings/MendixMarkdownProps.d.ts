@@ -19,7 +19,7 @@ export interface MdeToolbarButtonsType {
 
 export interface MdeOptionsType {
     key: string;
-    value: string;
+    value: boolean;
 }
 
 export type MdeRenderOptionTypeEnum = "block" | "inline";
@@ -46,7 +46,7 @@ export interface MdeToolbarButtonsPreviewType {
 
 export interface MdeOptionsPreviewType {
     key: string;
-    value: string;
+    value: boolean;
 }
 
 export interface MdeRenderOptionsPreviewType {

@@ -86,7 +86,7 @@ Use -1 to insert at last position on the toolbar.</description>
             <propertyGroup caption="Advanced">
                 <property key="mdeOptions" type="object" isList="true" required="false">
                     <caption>Editor options</caption>
-                    <description>Refer to the EasyMDE GitHub page for possible options: https://github.com/Ionaru/easy-markdown-editor. Nested options are not supported.
+                    <description>Refer to the EasyMDE GitHub page for possible options: https://github.com/Ionaru/easy-markdown-editor. Only boolean options are currently supported.
                     </description>
                     <properties>
                         <propertyGroup caption="Options">
@@ -94,7 +94,7 @@ Use -1 to insert at last position on the toolbar.</description>
                                 <caption>Option</caption>
                                 <description>The option name as defined by EasyMDE</description>
                             </property>
-                            <property key="value" type="string" required="true" defaultValue="true">
+                            <property key="value" type="boolean" required="true" defaultValue="true">
                                 <caption>The option value</caption>
                                 <description></description>
                             </property>
