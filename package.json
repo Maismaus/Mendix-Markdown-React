@@ -1,7 +1,7 @@
 {
     "name": "markdown",
     "widgetName": "MendixMarkdown",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Mendix Markdown viewer and editor",
     "copyright": "© Marius van der Knaap",
     "author": "Marius van der Knaap",
