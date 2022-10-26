@@ -36,7 +36,7 @@ export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElemen
             (mdOptions as any)[option.key] = option.value;
         });
         return mdOptions;
-    }, [mdeOptions, mdeHideIcons, mdeRenderOptions, mdeSpellChecker, mdeToolbarButtons]);
+    }, []);
 
     // Create CodeMirror reference so we can use the CodeMirror object later
     const [codemirrorInstance, setCodemirrorInstance] = useState<Editor | null>(null);
@@ -51,7 +51,12 @@ export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElemen
          * Use mdref if you have multiple Markdown editors on the page
          */
         function changeMarkdown(e: CustomEvent): void {
-            codemirrorInstance?.replaceSelection(e.detail);
+            let content = e.detail;
+            if (content.indexOf("{1}") > 0) {
+                // This allows you to insert the current selection into the markdown fired by the event
+                content = content.replace("{1}", codemirrorInstance?.getSelection());
+            }
+            codemirrorInstance?.replaceSelection(content);
         }
         const eventListenerHook = "changeMarkdown" + domEventListener?.value;
         document.body.addEventListener(eventListenerHook, changeMarkdown);
@@ -59,6 +64,6 @@ export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElemen
             document.body.removeEventListener(eventListenerHook, changeMarkdown);
             console.debug("Unmounting");
         };
-    }, [codemirrorInstance, domEventListener]);
+    });
     return <SimpleMdeReact events={mdeOverrideTabKey ? events : undefined} options={markdownOptions} value={textAttribute.value} onChange={value => textAttribute.setValue(value)} getCodemirrorInstance={getCmInstanceCallback} />;
 }
