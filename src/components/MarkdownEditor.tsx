@@ -52,9 +52,14 @@ export function MarkdownEditor(props: MendixMarkdownContainerProps): ReactElemen
          */
         function changeMarkdown(e: CustomEvent): void {
             let content = e.detail;
-            if (content.indexOf("{1}") > 0) {
+            const selection = codemirrorInstance?.getSelection();
+            if (content.match(/{.*?}/) && selection) {
                 // This allows you to insert the current selection into the markdown fired by the event
-                content = content.replace("{1}", codemirrorInstance?.getSelection());
+                content = content.replace(content.match(/{.*?}/)[0], selection);
+            } else {
+                //If there is no selection, the curly brackets still need to be removed
+                content = content.replace("{", "");
+                content = content.replace("}", "");
             }
             codemirrorInstance?.replaceSelection(content);
         }
